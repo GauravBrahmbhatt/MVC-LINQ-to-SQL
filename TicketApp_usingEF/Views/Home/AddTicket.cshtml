@@ -1,0 +1,87 @@
+﻿@model TicketApp_usingEF.Ticket
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddTicket</title>
+    <link href="~/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" style="margin-top: 50px;">
+        <div>
+            <h4>
+              Enter Ticket Information:
+            </h4>
+        </div>
+        <div>
+            <table class="table table-responsive">
+                @using (@Html.BeginForm())
+                {
+                    <tr>
+                        <td>Username</td>
+                        <td>@Html.TextBoxFor(x => x.Username)<span style="color: red">Required</span></td>
+                    </tr>
+                    <tr>
+                        <td>Problem Description</td>
+                        <td>@Html.TextAreaFor(x => x.ProblemDescription)</td>
+                    </tr>
+                    <tr>
+                        <td>Priority</td>
+                        <td>
+                            @Html.DropDownListFor(x => x.Priority,
+                    new[]
+                    {
+                        new SelectListItem() {Text="High", Value="High"},
+                        new SelectListItem() {Text="Moderate", Value="Moderate"},
+                        new SelectListItem() {Text="Low", Value="Low"}
+                    },
+                    "Choose an Option")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>
+                            @Html.DropDownListFor(x => x.Status,
+                    new[]
+                    {
+                        new SelectListItem() {Text="Open", Value="Open"},
+                        new SelectListItem() {Text="Closed", Value="Closed"}
+                    },
+                    "Choose an Option")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Additional Comments</td>
+                        <td>@Html.TextAreaFor(x => x.Comments)</td>
+                    </tr>
+                    <tr>
+                        <td>Resolution</td>
+                        <td>@Html.TextAreaFor(x => x.Resolution)</td>
+                    </tr>
+                    <tr>
+                        <td>Date Resolved</td>
+                        <td>@Html.TextBoxFor(x => x.DateResolved, new { type = "date" })</td>
+                    </tr>
+                    <tr>
+                        <td>Date Opened</td>
+                        <td>@Html.TextBoxFor(x => x.DateOpened, new { type = "date" })</td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Conjure Ticket" class="btn btn-primary" /></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <script src="~/jquery-1.12.0.min.js"></script>
+    <script src="~/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+</body>
+</html>
